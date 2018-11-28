@@ -1,7 +1,7 @@
 package application;
 
 public class Check {
-	public Boolean CheckNum(String text, Integer label, Integer x) {
+	Boolean CheckNum(String text, Integer label, Integer x) {
 //		x=0->search
 //		x=1->plus
 //		x=2->minus

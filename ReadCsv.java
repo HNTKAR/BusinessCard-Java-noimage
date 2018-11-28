@@ -9,12 +9,12 @@ public class ReadCsv {
 	int i = 0;
 	String TarNumS;
 	String[] ReadData;
-
+	String csvPath=".\\src\\resource\\list.csv";
 	ReadCsv() {
-		File file = new File(".\\src\\resource\\list.csv");
+		File file = new File(csvPath);
 		if (file.exists()) {
 		} else {
-			File nofile = new File(".\\src\\resource\\list.csv");
+			File nofile = new File(csvPath);
 			try {
 				nofile.createNewFile();
 			} catch (IOException e) {
@@ -24,10 +24,10 @@ public class ReadCsv {
 				alrt.showAndWait();
 			}
 		}
-	}// これがコンストラクタ
+	}//constructor
 
 	String[] CsvData(Integer raw) throws IOException {
-		File file = new File(".\\src\\resource\\list.csv");
+		File file = new File(csvPath);
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String str;
 		i = 0;
@@ -40,11 +40,12 @@ public class ReadCsv {
 	}
 
 	String SetLabel() throws IOException {
-		File file = new File(".\\src\\resource\\list.csv");
+		File file = new File(csvPath);
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String str;
 		str = br.readLine();
 		br.close();
 		return str;
 	}
+	
 }

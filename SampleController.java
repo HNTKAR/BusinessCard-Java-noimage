@@ -44,7 +44,9 @@ public class SampleController {
 	@FXML
 	private Button SetButton;
 	@FXML
-	private Button Startbutton;
+	private Button StartButton;
+	@FXML
+	private Button NewButton;
 	@FXML
 	private Label AllCards;
 	@FXML
@@ -71,8 +73,18 @@ public class SampleController {
 	}
 
 	@FXML
-	protected void Set(ActionEvent evt) {
-		System.out.println("SETÅI");
+	protected void Set(ActionEvent evt) throws IOException {
+		String[] newData= {HLname.getText(),HFname.getText(),KLname.getText(),KFname.getText(),Belongs.getText(),Position.getText(),Address.getText(),Email.getText(),Tell.getText(),Url.getText(),Remarks.getText(),AllCards.getText()};
+		WriteCsv wdata=new WriteCsv();
+		wdata.SetData(newData);
+	}
+	
+	@FXML
+	protected void New(ActionEvent evt) {
+		String[] newData= {null,null,null,null,null,null,null,null,null,null,null,};
+		this.SetText(newData);
+		SearchCard.setText("0");
+		Remarks.setText("ì¡Ç…Ç»Çµ");
 	}
 
 	@FXML
@@ -122,7 +134,7 @@ public class SampleController {
 		SearchCard.setText("1");
 		this.SetText(data);
 		AllCards.setText(csvread.SetLabel());
-		Startbutton.setVisible(false);
+		StartButton.setVisible(false);
 		StartLabel.setVisible(false);
 	}
 
