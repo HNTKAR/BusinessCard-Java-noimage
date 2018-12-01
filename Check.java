@@ -1,7 +1,10 @@
 package application;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class Check {
-	Boolean CheckNum(String text, Integer label, Integer x) {
+	int CheckNum(String cardtext, String cardlabel, int x) {
 //		x=0->search
 //		x=1->plus
 //		x=2->minus
@@ -9,7 +12,8 @@ public class Check {
 //		text<label->null
 //		x=2->minus
 		try {
-			int CardNo = Integer.parseInt(text);
+			int CardNo = Integer.parseInt(cardtext);
+			int label = Integer.parseInt(cardlabel);
 			if (x == 0) {
 			} else if (x == 1) {
 				CardNo = CardNo + 1;
@@ -17,14 +21,18 @@ public class Check {
 				CardNo = CardNo - 1;
 			}
 			if (CardNo <= 0) {
-				return null;
+				return 1;
 			} else if (CardNo > label) {
-				return false;
+				return label;
 			} else {
-				return true;
+				return CardNo;
 			}
 		} catch (NumberFormatException e) {
-			return false;
+			Alert alrt = new Alert(AlertType.ERROR);
+			alrt.setTitle("ERROR");
+			alrt.setHeaderText("”’l‚ğ“ü‚ê‚Ä‚­‚¾‚³‚¢");
+			alrt.showAndWait();
+			return 0;
 		}
 
 	}

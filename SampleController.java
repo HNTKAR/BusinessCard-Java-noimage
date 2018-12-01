@@ -53,92 +53,55 @@ public class SampleController {
 	private Label StartLabel;
 
 	@FXML
-	protected void search(ActionEvent evt) throws IOException {
-		int ACards = Integer.valueOf(AllCards.getText());
-		int CardNo = 0;
-		Check c = new Check();
-		Boolean x = c.CheckNum(SearchCard.getText(), ACards, 0);
-		if (x == null) {
-			CardNo = 1;
-		} else if (x) {
-			CardNo = Integer.parseInt(SearchCard.getText());
-		} else {
-			CardNo = ACards;
-		}
-		ReadCsv csvread = new ReadCsv();
-		data = csvread.CsvData(CardNo);
-		String SCardNo = String.valueOf(CardNo);
-		SearchCard.setText(SCardNo);
-		this.SetText(data);
-	}
-
-	@FXML
 	protected void Set(ActionEvent evt) throws IOException {
-		String[] newData= {HLname.getText(),HFname.getText(),KLname.getText(),KFname.getText(),Belongs.getText(),Position.getText(),Address.getText(),Email.getText(),Tell.getText(),Url.getText(),Remarks.getText(),AllCards.getText()};
-		WriteCsv wdata=new WriteCsv();
+		String txtArea = Remarks.getText();
+		if (txtArea != null) {
+			txtArea = txtArea.replace("\n", "\\n");
+		}
+		String[] newData = { HLname.getText(), HFname.getText(), KLname.getText(), KFname.getText(), Belongs.getText(),
+				Position.getText(), Address.getText(), Email.getText(), Tell.getText(), Url.getText(), txtArea,
+				AllCards.getText(), SearchCard.getText() };
+		writec wdata = new writec();
 		wdata.SetData(newData);
 	}
-	
+
 	@FXML
 	protected void New(ActionEvent evt) {
-		String[] newData= {null,null,null,null,null,null,null,null,null,null,null,};
+		String[] newData = { null, null, null, null, null, null, null, null, null, null, null };
 		this.SetText(newData);
 		SearchCard.setText("0");
-		Remarks.setText("“Á‚É‚È‚µ");
+		SetButton.setText("Regist");
 	}
 
 	@FXML
-	protected void Back(ActionEvent evt) throws IOException {
-		int ACards = Integer.valueOf(AllCards.getText());
-		int CardNo = 0;
-		Check c = new Check();
-		Boolean x = c.CheckNum(SearchCard.getText(), ACards, 2);
-		if (x == null) {
-			CardNo = 1;
-		} else if (x) {
-			CardNo = Integer.parseInt(SearchCard.getText()) - 1;
-		} else {
-			CardNo = ACards;
-		}
-		ReadCsv csvread = new ReadCsv();
-		data = csvread.CsvData(CardNo);
-		String SCardNo = String.valueOf(CardNo);
-		SearchCard.setText(SCardNo);
-		this.SetText(data);
+	protected void search(ActionEvent evt) throws IOException {
+		this.SNB(0);
 	}
 
 	@FXML
 	protected void Next(ActionEvent evt) throws IOException {
-		int ACards = Integer.valueOf(AllCards.getText());
-		int CardNo = 0;
-		Check c = new Check();
-		Boolean x = c.CheckNum(SearchCard.getText(), ACards, 1);
-		if (x == null) {
-			CardNo = 1;
-		} else if (x) {
-			CardNo = Integer.parseInt(SearchCard.getText()) + 1;
-		} else {
-			CardNo = ACards;
-		}
-		ReadCsv csvread = new ReadCsv();
-		data = csvread.CsvData(CardNo);
-		String SCardNo = String.valueOf(CardNo);
-		SearchCard.setText(SCardNo);
-		this.SetText(data);
+		this.SNB(1);
+	}
+
+	@FXML
+	protected void Back(ActionEvent evt) throws IOException {
+		this.SNB(2);
 	}
 
 	@FXML
 	protected void Start(ActionEvent evt) throws IOException {
-		ReadCsv csvread = new ReadCsv();
-		data = csvread.CsvData(1);
-		SearchCard.setText("1");
-		this.SetText(data);
-		AllCards.setText(csvread.SetLabel());
+		this.SNB(0);
 		StartButton.setVisible(false);
 		StartLabel.setVisible(false);
 	}
 
 	private void SetText(String[] setdata) {
+		if (setdata[10] != null) {
+			setdata[10] = setdata[10].replace("\\n", "\n");
+			for (int i = 0; i <= 10; i++) {
+				setdata[i] = setdata[i].replace("null", "");
+			}
+		}
 		HLname.setText(setdata[0]);
 		HFname.setText(setdata[1]);
 		KLname.setText(setdata[2]);
@@ -150,6 +113,27 @@ public class SampleController {
 		Tell.setText(setdata[8]);
 		Url.setText(setdata[9]);
 		Remarks.setText(setdata[10]);
+	}
+
+	private void SNB(int x) throws IOException {
+		int CardNo = 0;
+		readc read = new readc();
+		AllCards.setText(read.read(0)[0]);
+		Check c = new Check();
+		CardNo = c.CheckNum(SearchCard.getText(), AllCards.getText(), x);
+		if (CardNo != 0) {
+			data = read.read(CardNo);
+			SearchCard.setText(String.valueOf(CardNo));
+			this.SetText(data);
+			SetButton.setText("Edit");
+		}
+	}
+
+	public void x() {
+		String[] newData = { null, null, null, null, null, null, null, null, null, null, null };
+		this.SetText(newData);
+		SearchCard.setText("0");
+		SetButton.setText("Regist");
 	}
 
 }
