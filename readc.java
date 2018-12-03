@@ -4,20 +4,19 @@ import java.io.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.*;
 
-public class readc {
+public class ReadC {
 
 	String str;
-	String TarS;
 	String[] ReadData;
 	String csvPath = ".\\src\\resource\\list.csv";
 
-	readc() {
+	ReadC() {
 		File file = new File(csvPath);
 		if (file.exists()) {
 		} else {
 			Alert alrt = new Alert(AlertType.ERROR);
 			alrt.setTitle("メッセージ");
-			alrt.setHeaderText("ファイルに対する権限ない、またはファイルが破損しています");
+			alrt.setHeaderText("ファイルに対する権限がない、またはファイルが破損しています");
 			alrt.showAndWait();
 		}
 	}// constructor
@@ -31,14 +30,14 @@ public class readc {
 		return ReadData;
 	}
 
-	Integer sortnum(String searchword) throws IOException {
+	int sortnum(String searchword) throws IOException {
 		int i = 0;
 		BufferedReader bread = new BufferedReader(new FileReader(new File(csvPath)));
 		bread.readLine();
 		for (; (str = bread.readLine()) != null; i++) {
 			ReadData = str.split(",");
-			TarS = ReadData[0] + ReadData[1];
-			if ((searchword.compareTo(TarS)) <= 0) {
+			str = ReadData[0] + ReadData[1];
+			if ((searchword.compareTo(str)) <= 0) {
 				break;
 			}
 		}

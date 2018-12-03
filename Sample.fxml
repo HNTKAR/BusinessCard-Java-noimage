@@ -44,9 +44,10 @@
 		<TextField fx:id="Url" layoutX="136.0" layoutY="266.0" prefHeight="25.0" prefWidth="305.0" promptText="ホームページ" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="266.0" />
 		<Label layoutX="47.0" layoutY="298.0" text="Remarks" AnchorPane.leftAnchor="47.0" AnchorPane.topAnchor="300.0" />
 		<Button fx:id="BackButton" layoutX="60.0" layoutY="395.0" mnemonicParsing="false" onAction="#Back" text="Back" AnchorPane.bottomAnchor="-40.0" AnchorPane.leftAnchor="50.0" />
-		<Button fx:id="SetButton" layoutX="204.0" layoutY="435.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Set" prefHeight="25.0" prefWidth="49.0" text="Regist" AnchorPane.bottomAnchor="-40.0" AnchorPane.rightAnchor="150.0" />
+		<Button fx:id="SetButton" layoutX="204.0" layoutY="435.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Set" prefHeight="25.0" prefWidth="49.0" text="Regist" AnchorPane.bottomAnchor="-40.0" AnchorPane.rightAnchor="130.0" />
 		<Button fx:id="SearchButton" layoutX="54.0" layoutY="360.0" mnemonicParsing="false" onAction="#search" text="Search" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="44.0" />
-      <Button fx:id="NewButton" layoutX="126.0" layoutY="443.0" mnemonicParsing="false" onAction="#New" text="New" AnchorPane.bottomAnchor="-40.0" AnchorPane.leftAnchor="150.0" />
+      <Button fx:id="NewButton" layoutX="126.0" layoutY="443.0" mnemonicParsing="false" onAction="#New" text="New" AnchorPane.bottomAnchor="-40.0" AnchorPane.leftAnchor="130.0" />
+      <Button fx:id="DeleteButton" layoutX="210.0" layoutY="435.0" mnemonicParsing="false" onAction="#Delete" text="Delete" AnchorPane.bottomAnchor="-40.0" />
 		<TextArea fx:id="Remarks" layoutX="146.0" layoutY="310.0" prefHeight="100.0" prefWidth="305.0" promptText="備考" wrapText="true" />
 		<Label layoutX="87.0" layoutY="343.0" text="/" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="77.0" />
 		<Label fx:id="AllCards" layoutX="92.0" layoutY="343.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="87.0" />

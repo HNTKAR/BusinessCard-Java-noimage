@@ -48,6 +48,8 @@ public class SampleController {
 	@FXML
 	private Button NewButton;
 	@FXML
+	private Button DeleteButton;
+	@FXML
 	private Label AllCards;
 	@FXML
 	private Label StartLabel;
@@ -61,13 +63,13 @@ public class SampleController {
 		String[] newData = { HLname.getText(), HFname.getText(), KLname.getText(), KFname.getText(), Belongs.getText(),
 				Position.getText(), Address.getText(), Email.getText(), Tell.getText(), Url.getText(), txtArea,
 				AllCards.getText(), SearchCard.getText() };
-		writec wdata = new writec();
+		WriteC wdata = new WriteC();
 		wdata.SetData(newData);
 	}
 
 	@FXML
 	protected void New(ActionEvent evt) {
-		String[] newData = { null, null, null, null, null, null, null, null, null, null, null };
+		String[] newData = { null, null, null, null, null, null, null, null, null, "http://www.", null };
 		this.SetText(newData);
 		SearchCard.setText("0");
 		SetButton.setText("Regist");
@@ -75,24 +77,30 @@ public class SampleController {
 
 	@FXML
 	protected void search(ActionEvent evt) throws IOException {
-		this.SNB(0);
+		this.snb(0);
 	}
 
 	@FXML
 	protected void Next(ActionEvent evt) throws IOException {
-		this.SNB(1);
+		this.snb(1);
 	}
 
 	@FXML
 	protected void Back(ActionEvent evt) throws IOException {
-		this.SNB(2);
+		this.snb(2);
 	}
 
 	@FXML
 	protected void Start(ActionEvent evt) throws IOException {
-		this.SNB(0);
+		this.snb(0);
 		StartButton.setVisible(false);
 		StartLabel.setVisible(false);
+	}
+
+	@FXML
+	protected void Delete(ActionEvent evt) throws IOException  {
+		WriteC wdata = new WriteC();
+		wdata.DelData(SearchCard.getText(),AllCards.getText());
 	}
 
 	private void SetText(String[] setdata) {
@@ -115,9 +123,9 @@ public class SampleController {
 		Remarks.setText(setdata[10]);
 	}
 
-	private void SNB(int x) throws IOException {
+	private void snb(int x) throws IOException {
 		int CardNo = 0;
-		readc read = new readc();
+		ReadC read = new ReadC();
 		AllCards.setText(read.read(0)[0]);
 		Check c = new Check();
 		CardNo = c.CheckNum(SearchCard.getText(), AllCards.getText(), x);
@@ -127,13 +135,6 @@ public class SampleController {
 			this.SetText(data);
 			SetButton.setText("Edit");
 		}
-	}
-
-	public void x() {
-		String[] newData = { null, null, null, null, null, null, null, null, null, null, null };
-		this.SetText(newData);
-		SearchCard.setText("0");
-		SetButton.setText("Regist");
 	}
 
 }
